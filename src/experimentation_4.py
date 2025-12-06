@@ -4,11 +4,11 @@ from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
-train_CA = pd.read_csv("california_train.csv")
-test_NV = pd.read_csv("nevada_test.csv")
-test_CO = pd.read_csv("colorado_test.csv")
+train_CA = pd.read_csv("resources/2-Dataset/dataset_train80_0_1_final.csv")
+test_NV = pd.read_csv("resources/Complementary_data/dataset_test20_0_1_final_ne.csv")
+test_CO = pd.read_csv("resources/Complementary_data/dataset_test20_0_1_final_co.csv")
 
-target_col = "target"
+target_col = "INCOME_ABOVE_50K"
 
 X_train = train_CA.drop(columns=[target_col])
 y_train = train_CA[target_col]
