@@ -14,3 +14,5 @@ On catégroise la catégorie du niveau d'études en 6 parties :
 - bac+5
 - doctorat
   On binarise le reste des catégories.
+
+
