@@ -9,6 +9,7 @@ from sklearn.metrics import (
 )
 
 from xgboost import XGBClassifier
+from best_models import get_models
 
 
 train_CA = pd.read_csv("resources/2-Dataset/dataset_train80_0_1_final.csv")
@@ -28,37 +29,7 @@ X_test_CO = test_CO.drop(columns=[target_col])
 y_test_CO = test_CO[target_col]
 
 
-models = {
-    "RandomForest": RandomForestClassifier(
-        n_estimators=200,
-        max_depth=None,
-        min_samples_split=10,
-        min_samples_leaf=1,
-        max_features="log2",
-        random_state=42,
-        n_jobs=-1
-    ),
-
-    # A changer
-    "AdaBoost": AdaBoostClassifier(
-        n_estimators=100,
-        learning_rate=0.1,
-        random_state=42
-    ),
-
-    # A changer
-    "XGBoost": XGBClassifier(
-        n_estimators=100,
-        max_depth=6,
-        learning_rate=0.1,
-        subsample=1.0,
-        colsample_bytree=1.0,
-        objective="binary:logistic",
-        eval_metric="logloss",
-        random_state=42,
-        use_label_encoder=False
-    )
-}
+models = get_models()
 
 
 
