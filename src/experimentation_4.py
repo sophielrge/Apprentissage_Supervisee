@@ -74,4 +74,5 @@ for name, model in models.items():
 
 results_df = pd.DataFrame(results)
 print("\n=== Résultats Expe 4 – Inférence inter-États ===")
+pd.set_option('display.max_columns', None)
 print(results_df)

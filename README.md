@@ -71,8 +71,43 @@ Tableau 3 – Expérimentation (1) : Résultats obtenus en test
 
 ### 2.4 Inférence sur un autre jeu de données _(Expérimentation 4)_
 
+Pour cette expérience, les modèles ont été entraînés sur les données de Californie et testés sur les jeux de données du Colorado et du Nevada.  
+L'objectif est de mesurer la capacité de généralisation des modèles.
+
+| Métrique    | RandomForest | AdaBoost   | XGBoost    |
+|-------------|--------------|------------|------------|
+| Accuracy_NV | 0.755216     | 0.717663   | 0.759852   |
+| F1_NV       | 0.679612     | 0.639858   | 0.687198   |
+| AUC_NV      | 0.860404     | 0.825411   | 0.865947   |
+| Accuracy_CO | 0.778346     | 0.750240   | 0.778186   |
+| F1_CO       | 0.760111     | 0.722400   | 0.760888   |
+| AUC_CO      | 0.871310     | 0.835703   | 0.876914   |
+
+Tableau X – expérimentation (4) : Inférence inter-États (Nevada et Colorado)
+
+**Métriques calculées :** 
+- _Accuracy_ : C'est la proportion de bonnes prédictions par rapport à toutes les prédictions.
+- _F1_ : C'est une mesure qui combine la précision et le rappel pour la classe positive.  
+  (Ce score montre si le modèle fait peu d'erreurs quand il prédit un revenu élevé et s'il réussit à détecter la plupart des personnes ayant un revenu élevé.)
+- _AUC (Area Under Curve)_ : C'est un nombre entre 0 et 1 qui montre si le modèle différencie bien les classes. (Plus le chiffre est proche de 1, mieux le modèle distingue les revenus faibles et élevés.)
+
+**Remarques :**
+- Les performances sont légèrement plus faibles que celles obtenues sur l’ensemble de Californie (train/test).
+- XGBoost et RandomForest restent les modèles les plus performants, avec des Accuracy et F1 supérieures à AdaBoost sur les deux états.  
+- La capacité de généralisation est meilleure pour XGBoost (AUC_CO la plus élevée : 0.876914).
 
 ### 2.5 Impact de la taille du jeu de données _(Expérimentation 5)_
+
+Nous avons entraîné les modèles RandomForest, AdaBoost et XGBoost avec différentes proportions du jeu de données de Californie (de 10% à 100%).  
+Nous avons mesuré l'évolution du F1-score en fonction du nombre d'échantillons.
+
+
+
+**Remarques :**
+- Pour RandomForest et XGBoost, le F1-score augmente avec la taille du jeu de données. Plus on a de données, plus le modèle est performant.  
+- AdaBoost montre une légère amélioration mais reste plus faible que les autres modèles. Il apprend donc moins bien avec un jeu de données plus grand.
+- Le score F1 se stabilise à partir de 80-100% des données. Donc au-delà d'un certain point, ajouter plus de données n'améliore pas beaucoup la performance.  
+- XGBoost atteint le score le plus élevé (0.7869) avec le jeu entier.
 
 ---
 
