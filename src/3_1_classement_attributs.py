@@ -4,13 +4,13 @@ from sklearn.inspection import permutation_importance
 from sklearn.metrics import f1_score
 from best_models import get_models
 
-test_CA = pd.read_csv("resources/2-Dataset/dataset_test20_0_1_final.csv")
+test_CA = pd.read_csv("../resources/2-Dataset/dataset_test20_0_1_final.csv")
 target_col = "INCOME_ABOVE_50K"
 
 X_test = test_CA.drop(columns=[target_col])
 y_test = test_CA[target_col]
 
-model = get_models()["RandomForest"]  # Mettre meilleur modèle
+model = get_models()["XGBoost"]  # Mettre meilleur modèle
 
 # Calcul de l'importance par permutation
 perm_importance = permutation_importance(

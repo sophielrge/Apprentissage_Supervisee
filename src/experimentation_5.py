@@ -9,7 +9,7 @@ from best_models import get_models
 
 from xgboost import XGBClassifier
 
-data = pd.read_csv("resources/2-Dataset/dataset_train80_0_1_final.csv")
+data = pd.read_csv("../resources/2-Dataset/dataset_train80_0_1_final.csv")
 
 target_col = "INCOME_ABOVE_50K"
 X = data.drop(columns=[target_col])
@@ -23,25 +23,33 @@ X_train_full, X_test, y_train_full, y_test = train_test_split(
 # A modifier avec les valeuts d'Elian
 models = get_models()
 
-train_sizes = [0.1, 0.2, 0.4, 0.6, 0.8, 1.0]
+train_sizes = [0.1, 0.2, 0.4, 0.6, 0.8, None]
 
 results = []
 
 for model_name, model in models.items():
     for size in train_sizes:
-        X_sub, _, y_sub, _ = train_test_split(
-            X_train_full,
-            y_train_full,
-            train_size=size,
-            random_state=42,
-            stratify=y_train_full
-        )
+        if size is None:
+            X_sub = X_train_full
+            y_sub = y_train_full
+            size_percent = 100
+        else:
+            X_sub, _, y_sub, _ = train_test_split(
+                X_train_full,
+                y_train_full,
+                train_size=size,
+                random_state=42,
+                stratify=y_train_full
+            )
+            size_percent = int(size * 100)
+
         model.fit(X_sub, y_sub)
         y_pred = model.predict(X_test)
         y_proba = model.predict_proba(X_test)[:, 1]
+
         results.append({
             "Model": model_name,
-            "Train_size_%": int(size * 100),
+            "Train_size_%": size_percent,
             "Nb_samples": len(X_sub),
             "Accuracy": accuracy_score(y_test, y_pred),
             "F1-score": f1_score(y_test, y_pred),

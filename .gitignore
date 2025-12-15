@@ -1,3 +1,4 @@
 resources/2-Dataset/*.csv
 resources/Complementary-data/*.csv
 venv/
+resources/models/
