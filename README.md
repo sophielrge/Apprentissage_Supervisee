@@ -83,7 +83,7 @@ L'objectif est de mesurer la capacité de généralisation des modèles.
 | F1_CO       | 0.760111     | 0.722400   | 0.760888   |
 | AUC_CO      | 0.871310     | 0.835703   | 0.876914   |
 
-Tableau X – expérimentation (4) : Inférence inter-États (Nevada et Colorado)
+Tableau X – Expérimentation (4) : Inférence inter-États (Nevada et Colorado)
 
 **Métriques calculées :** 
 - _Accuracy_ : C'est la proportion de bonnes prédictions par rapport à toutes les prédictions.
@@ -101,7 +101,7 @@ Tableau X – expérimentation (4) : Inférence inter-États (Nevada et Colorado
 Nous avons entraîné les modèles RandomForest, AdaBoost et XGBoost avec différentes proportions du jeu de données de Californie (de 10% à 100%).  
 Nous avons mesuré l'évolution du F1-score en fonction du nombre d'échantillons.
 
-
+Tableau X – Expérimentation (5) : Impact de la taille du jeu d'entraînement
 
 **Remarques :**
 - Pour RandomForest et XGBoost, le F1-score augmente avec la taille du jeu de données. Plus on a de données, plus le modèle est performant.  
