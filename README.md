@@ -101,6 +101,7 @@ Tableau X – Expérimentation (4) : Inférence inter-États (Nevada et Colorado
 Nous avons entraîné les modèles RandomForest, AdaBoost et XGBoost avec différentes proportions du jeu de données de Californie (de 10% à 100%).  
 Nous avons mesuré l'évolution du F1-score en fonction du nombre d'échantillons.
 
+<img width="571" height="433" alt="Capture d’écran 2025-12-15 à 18 33 36" src="https://github.com/user-attachments/assets/25b24212-83b9-49b2-b6b0-b29903c0ed4c" />
 Tableau X – Expérimentation (5) : Impact de la taille du jeu d'entraînement
 
 **Remarques :**
