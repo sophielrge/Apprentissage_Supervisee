@@ -117,6 +117,32 @@ Tableau X – Expérimentation (5) : Impact de la taille du jeu d'entraînement
 
 ### 3.1 Importance globale des attributs
 
+L’objectif de cette partie est d’identifier quels attributs ont le plus d’influence sur les prédictions du modèle.
+Nous utilisons le modèle XGBoost, qui c'est révélé comme le plus performant dans la partie 2.
+
+Pour cela, nous utilisons une méthode basée sur la permutation des valeurs : 
+- On commence par mesurer la performance du modèle sur le jeu de test original.
+- Pour chaque attribut :
+  - On mélange aléatoirement les valeurs de cet attribut.
+  - Les autres attributs restent inchangés.
+  - On refait une prédiction avec le modèle sur ce jeu de test modifié.
+  - On mesure la nouvelle performance.
+- On calcule la différence de performance entre le jeu de test normal et le jeu perturbé.
+
+Une forte baisse de performance indique que l’attribut est important.
+À l’inverse, une faible baisse signifie que l’attribut a peu d’impact sur la prédiction.
+
+<img width="878" height="487" alt="Capture d’écran 2025-12-17 à 10 57 29" src="https://github.com/user-attachments/assets/b8236ecf-6a3e-4e7c-a575-4f00ef8f3311" />
+Tableau X – Expérimentation (6) : Top 15 - l'importance des attributs
+
+**Remarques :** 
+- L’importance a été calculée pour l’ensemble des attributs du jeu de données. Mais seuls les 15 attributs avec les plus d'impacts sont affichés, pour des raisons de lisibilité.
+- Nous avons donc pu voir que les attributs qui sont le plus importants sont :
+  - `WKHP` (le nombre d’heures travaillées par semaine)
+  - `AGEP` (l'âge )
+  - `4_Bachelor` (le niveau d’études : bac+3)
+  - `5_Master_To_Professionnal` (le niveau d’études : bac+5)
+ -  Les résultats montrent aussi que certains attributs n'ont quasiment pas d'impact.
 
 ### 3.2 Explications locales
 
