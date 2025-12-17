@@ -133,6 +133,7 @@ Une forte baisse de performance indique que l’attribut est important.
 À l’inverse, une faible baisse signifie que l’attribut a peu d’impact sur la prédiction.
 
 <img width="878" height="487" alt="Capture d’écran 2025-12-17 à 10 57 29" src="https://github.com/user-attachments/assets/b8236ecf-6a3e-4e7c-a575-4f00ef8f3311" />
+
 Tableau X – Expérimentation (6) : Top 15 - l'importance des attributs
 
 **Remarques :** 
