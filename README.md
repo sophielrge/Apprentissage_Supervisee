@@ -482,8 +482,9 @@ POBP_369.0 <= 0.00: 0.103
 
 qui se traduisent en image par :
 
+<img width="687" height="531" alt="image" src="https://github.com/user-attachments/assets/5299240c-788e-4489-827f-0a8d8588d0c9" />
 
-IMG
+
 
 
 Exemple 1 LIME : Les 10 features les plus importantes pour un cas particulier(négative en rouge et positive en vert)
@@ -521,7 +522,7 @@ and Puerto Rico Community Survey 2018) est négatif(0.309) donc cela diminue la 
 ### SHAP
 On va maintenant voir 2 exemples de SHAP pour mieux comprendre son fonctionnement.
 
-IMG
+<img width="824" height="400" alt="image" src="https://github.com/user-attachments/assets/c37820d5-2fda-4bff-97cc-0c0fb9264cd8" />
 
 Exemple 1 SHAP : L'impact des 10 caractéristiques les plus importantes, d'une personne choisis au hasard sur ses chances de gagner >50k(résultat négatif)
 
@@ -535,7 +536,7 @@ Dans cet exemple on voit que son age et son sexe sont légèrement favorables, m
 
 
 
-IMG2
+<img width="832" height="425" alt="image" src="https://github.com/user-attachments/assets/5a8b4a53-f599-43f8-96bd-4d3b3c2c46f7" />
 
 Exemple 2 SHAP : L'impact des 10 caractéristiques  les plus importantes, d'une personne choisis au hasard sur ses chances de gagner >50k(résultat positif)
 
@@ -553,11 +554,12 @@ LIME permet de comprendre une décision précise du modèle en simplifiant son f
 SHAP va mesurer la contribution exacte de chaque caractéristique. Il ne se contente pas d'analyser un cas isolé : il peut aussi donner une vision d'ensemble de l'importance des variables dans le modèle complet. Il permet de comprendre l'impact concret de chaque caractéristique de façon visuelle qui plus est.
 
 
-#### Analyse summary-plot de SHAP
+### Analyse summary-plot de SHAP
 
 Le Summary plot de SHAP permet de voir quelles caractéristiques sont les plus importantes dans le modèle et dans quel sens elles sur influent la prédiction.
 
-IMG
+<img width="592" height="711" alt="image" src="https://github.com/user-attachments/assets/e98d6a06-e6b3-49f8-8775-01587c5acc89" />
+
 
 
 Il est complexe d'analyser dans son entièreté ce graphique mais voici 3 choses qui nous semblent importantes.
@@ -573,7 +575,8 @@ L'objectif est d'arriver à faire basculer la prédiction du modèle en changean
 
 L'individu 28818 est prédit comme  "gagnant + de 50k" alors que ce n'est pas le cas. Le fait qu'il travail 60 heures par semaine semble jouer un rôle important donc on à décider d'observer les prédictions du modèles en faisant juste varier son nombre d'heures travaillées entre 30 et 55.
 
-IMG
+<img width="570" height="379" alt="image" src="https://github.com/user-attachments/assets/ef12888f-44db-42e6-b79a-29a632d6b0fc" />
+
 
 On observe qu'en effet son nombre d'heures au travail a un très fort impact sur la prédiction et donc qu'il faudrait être en dessous de 40 heures pour que le modèle change d'avis.
 
