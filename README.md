@@ -150,3 +150,29 @@ Tableau X – Expérimentation (6) : Top 15 - l'importance des attributs
 
 ### 3.3 Explication contrefactuelle
 
+## 4. Evaluation sur un nouvel échantillon
+
+Nous avons testé notre meilleur modèle (XGBoost) sur un nouvel échantillon du jeu de données de Californie, mais qui n’avait pas été utilisé lors de l’entraînement.
+
+### Préparation des données
+Comme pour les autres jeux de données, nous avons effectué un prétraitement :
+
+1. On garde les variables numériques pertinentes (AGEP et WKPH).
+2. On fait des catégorie pour les niveaux d'étude.
+3. On applique one-hot encoding pour le reste des attributs.
+
+Après cette préparation, certaines colonnes du nouvel échantillon étaient absentes car certaines catégories n’étaient pas présentes dans l’échantillon testé. Nous avions rencontré ce même problème lors de l'utilisation du jeud e données du Nevada.
+
+### Ajustement pour correspondre au modèle
+Pour appliquer notre modèle, nous avons ensuite :
+
+1. Ajouté les colonnes manquantes (initialisées à 0) correspondant aux catégories absentes.
+2. Supprimé les colonnes supplémentaires présentes uniquement dans l’échantillon.
+3. Réordonné les colonnes pour qu’elles correspondent exactement à celles attendues par le modèle.
+
+### Résultat 
+
+<img width="520" height="402" alt="Capture d’écran 2025-12-18 à 17 39 46" src="https://github.com/user-attachments/assets/26672715-58f6-46c6-a0f2-045e33c2da15" />
+
+Tableau X – Evaluation d'un échantillon de Californie : Performance du modèle
+
