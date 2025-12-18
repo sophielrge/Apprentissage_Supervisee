@@ -451,8 +451,132 @@ Tableau X – Expérimentation (6) : Top 15 - l'importance des attributs
 
 ### 3.2 Explications locales
 
+### LIME 
+
+#### Exemple d'utilisation
+
+On va ici présenter un cas d'utilsation de LIME et voir comment analyser les données ainsi récoltées.
+
+On a pour une première personne choisie au hasard dans le dataset ces résultats sur les 10 features les plus importantes :
+
+Exemple 0 (index 8457) - Features les plus influentes :
+POBP_460.0 <= 0.00: -0.309
+
+OCCP_2755.0 <= 0.00: -0.293
+
+POBP_515.0 <= 0.00: -0.292
+
+POBP_459.0 <= 0.00: -0.281
+
+POBP_72.0 <= 0.00: -0.272
+
+OCCP_8930.0 <= 0.00: -0.271
+
+OCCP_1106.0 <= 0.00: -0.270
+
+OCCP_3321.0 <= 0.00: -0.223
+
+OCCP_3725.0 <= 0.00: 0.104
+
+POBP_369.0 <= 0.00: 0.103
+
+qui se traduisent en image par :
+
+
+IMG
+
+
+Exemple 1 LIME : Les 10 features les plus importantes pour un cas particulier(négative en rouge et positive en vert)
+
+La première ligne POBP_460.0 <= 0.00: -0.309 se traduit par, le fait de ne PAS être née en ZAMBIE (voir le document American Community Survey 
+and Puerto Rico Community Survey 2018) est négatif(0.309) donc cela diminue la probabilité d'avoir > 50k$" pour le modèle.
+
+
+ La seconde ligne OCCP_2755.0 <= 0.00: -0.293 traduit que le fait que le travail de la personne de soit pas " Disc jockeys, except radio  " est également très pénalisant.
+
+ Enfin la ligne OCCP_3725.0 <= 0.00: 0.104 explique qu'il est positif que la personne n'ait pas comme travail "First-line supervisors of security workers"
+
+
+#### Avantages et Limites
+
+ **Intérêts :**
+
+**Interprétabilité locale** - Permet de comprendre pourquoi une prédiction spécifique a été faite
+
+**Accessible** - Visualisation simple (vert/rouge) compréhensible par tous
+
+**Détection de biais** - Permet de voir si le modèle utilise des features pertinentes
+
+
+ **Limites :**
+
+**Instable** - Les résultats peuvent changer entre différentes exécutions
+
+**Local seulement** - N'explique pas le comportement global du modèle
+
+**Coûteux en calcul** - Lent sur de grands jeux de données
+
+**Interprétabilité** - Peux être très dur à comprendre et flou. Il est par exemple difficile de comprendre pourquoi ne pas venir spécifiquement de Zambie a un tel impact négatif sur la prédiction.
+
+### SHAP
+On va maintenant voir 2 exemples de SHAP pour mieux comprendre son fonctionnement.
+
+IMG
+
+Exemple 1 SHAP : L'impact des 10 caractéristiques les plus importantes, d'une personne choisis au hasard sur ses chances de gagner >50k(résultat négatif)
+
+Toutes les personnes dans le dataset partent avec une valeur initiale de -03966 ( on estime qu'il est plus probable qu'une personne "moyenne" ne gagne pas plus de 50 k)
+Ensuite, SHAP évalue chaque caractéristique puis dit si elle est positive(sous entendu augmente la probabilté pour le modèle que la personne gagne + de 50 k) ou l'inverse.
+
+
+Dans cet exemple on voit que son age et son sexe sont légèrement favorables, mais que son travail "Janitors and building cleaners"(-0.99) ainsi que son lieu de naissance "Mexico" (-0.56) joue fortement contre lui. Au final SHAP lui attribue une note de -2.36 ce qui équivaut à une probabilté de 11.7% de gagner + de 50K.
+
+
+
+
+
+IMG2
+
+Exemple 2 SHAP : L'impact des 10 caractéristiques  les plus importantes, d'une personne choisis au hasard sur ses chances de gagner >50k(résultat positif)
+
+Dans cette exemple, on se rend compte que les 7 premières features(Age, sexe, ethnie,...) n'ont que très peu d'impact.
+Ce qui va avoir un impact indéniable sera son nombre d'heures de travail(+1.22), son master (+1.17) et enfin son travail en lui même "Financial managers".
+
+Tout cela pris en compte, le modèle estime qu'il y a 97% de chances que cette personne gagne plus de 50K.
+
+Au final SHAP permet de comprendre de façon précise les caractéristiques qui impactent chaque individu. On comprend plus facilement la logique du modèle et ainsi ce qui compte vraiment pour gagner + de 50k.
+
+#### Comparaison Lime et SHAP 
+
+LIME permet de comprendre une décision précise du modèle en simplifiant son fonctionnement autour d'un cas particulier.Cela permete notamment de comprendre pourquoi une personne a été classée d'une certaine manière.
+
+SHAP va mesurer la contribution exacte de chaque caractéristique. Il ne se contente pas d'analyser un cas isolé : il peut aussi donner une vision d'ensemble de l'importance des variables dans le modèle complet. Il permet de comprendre l'impact concret de chaque caractéristique de façon visuelle qui plus est.
+
+
+#### Analyse summary-plot de SHAP
+
+Le Summary plot de SHAP permet de voir quelles caractéristiques sont les plus importantes dans le modèle et dans quel sens elles sur influent la prédiction.
+
+IMG
+
+
+Il est complexe d'analyser dans son entièreté ce graphique mais voici 3 choses qui nous semblent importantes.
+
+- On voit que pour les WKHP (working hours), il est  grandement valorisé d'en faire beaucoup, et que l'âge élevé d'une personne a tendance à accroître ses chances.
+- Que visiblement le sexe masculin est toujours positif là où le sexe féminin lui est toujours négatif.
+
+- Enfin qu'avoir un diplôme (Licence ou Master+) est tout le temps valorisé.
 
 ### 3.3 Explication contrefactuelle
+
+L'objectif est d'arriver à faire basculer la prédiction du modèle en changeant simplement un attribut. Pour cela il nous a paru pertinent de prendre un faux positif.
+
+L'individu 28818 est prédit comme  "gagnant + de 50k" alors que ce n'est pas le cas. Le fait qu'il travail 60 heures par semaine semble jouer un rôle important donc on à décider d'observer les prédictions du modèles en faisant juste varier son nombre d'heures travaillées entre 30 et 55.
+
+IMG
+
+On observe qu'en effet son nombre d'heures au travail a un très fort impact sur la prédiction et donc qu'il faudrait être en dessous de 40 heures pour que le modèle change d'avis.
+
 
 ## 4. Evaluation sur un nouvel échantillon
 
