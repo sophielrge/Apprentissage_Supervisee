@@ -387,7 +387,7 @@ L'objectif est de mesurer la capacité de généralisation des modèles.
 | F1_CO       | 0.760111     | 0.722400   | 0.760888   |
 | AUC_CO      | 0.871310     | 0.835703   | 0.876914   |
 
-Tableau X – Expérimentation (4) : Inférence inter-États (Nevada et Colorado)
+Tableau 4 – Expérimentation (4) : Inférence inter-États (Nevada et Colorado)
 
 **Métriques calculées :** 
 - _Accuracy_ : C'est la proportion de bonnes prédictions par rapport à toutes les prédictions.
@@ -407,7 +407,7 @@ Nous avons mesuré l'évolution du F1-score en fonction du nombre d'échantillon
 
 <img width="571" height="433" alt="Capture d’écran 2025-12-15 à 18 33 36" src="https://github.com/user-attachments/assets/25b24212-83b9-49b2-b6b0-b29903c0ed4c" />
 
-Tableau X – Expérimentation (5) : Impact de la taille du jeu d'entraînement
+Tableau 5 – Expérimentation (5) : Impact de la taille du jeu d'entraînement
 
 **Remarques :**
 - Pour RandomForest et XGBoost, le F1-score augmente avec la taille du jeu de données. Plus on a de données, plus le modèle est performant.  
@@ -438,7 +438,7 @@ Une forte baisse de performance indique que l’attribut est important.
 
 <img width="878" height="487" alt="Capture d’écran 2025-12-17 à 10 57 29" src="https://github.com/user-attachments/assets/b8236ecf-6a3e-4e7c-a575-4f00ef8f3311" />
 
-Tableau X – Expérimentation (6) : Top 15 - l'importance des attributs
+Tableau 6 – Expérimentation (6) : Top 15 - l'importance des attributs
 
 **Remarques :** 
 - L’importance a été calculée pour l’ensemble des attributs du jeu de données. Mais seuls les 15 attributs avec les plus d'impacts sont affichés, pour des raisons de lisibilité.
@@ -605,7 +605,7 @@ Pour appliquer notre modèle, nous avons ensuite :
 
 <img width="520" height="402" alt="Capture d’écran 2025-12-18 à 17 39 46" src="https://github.com/user-attachments/assets/26672715-58f6-46c6-a0f2-045e33c2da15" />
 
-Tableau X – Evaluation d'un échantillon de Californie : Performance du modèle
+Tableau 7 – Evaluation d'un échantillon de Californie : Performance du modèle
 
 
 Nous remarquons que le modèle ne se trompe pas beaucoup. Cela est cohérent car les données sont du même environnement que celles utilisées pour l'entrainement.
