@@ -24,7 +24,7 @@ Pour préparer les données, nous avons effectué plusieurs opérations :
 ### 1.2 Séparation des données en ensembles d'entraînement et de test
 
 Une fois les données nettoyées et transformées, nous avons procédé à leur séparation :
-- Le jeu de données a été divisé en 80% pour l'entraînement et 20% pour le test.
+- Le jeu de données a été divisé en 75% pour l'entraînement et 25% pour le test.
 
 
 ---
