@@ -176,3 +176,5 @@ Pour appliquer notre modèle, nous avons ensuite :
 
 Tableau X – Evaluation d'un échantillon de Californie : Performance du modèle
 
+
+Nous remarquons que le modèle ne se trompe pas beaucoup. Cela est cohérent car les données sont du même environnement que celles utilisées pour l'entrainement.
