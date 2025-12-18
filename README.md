@@ -325,6 +325,53 @@ Le modèle XGBoost a été optimisé sur cinq hyperparamètres principaux. La me
 
 ### 2.3 Analyse comparative des modèles _(Expérimentation 3)_
 
+* Résultats des meilleurs modèles obtenus dans Expe 2
+
+|  Evaluation en train | Random Forest | Adaboost | XGBoost |
+|----------------------|---------------|----------|---------|
+|  accuracy            | 0.9372        | 0.7904   | 0.8455  |
+|  Temps calcul        | 33.9610 sec   | 18.5088 sec | 0.3632 sec |
+|  Matrice confusion   | [[74934 3556] [4799 49763]] | [[65888 12652] [15237 39325]] | [[68188 10302] [10259 44303]] |
+
+
+
+|   Evaluation en test | Random Forest | Adaboost | XGBoost |
+|----------------------|---------------|----------|---------|
+|  accuracy            | 0.8191        | 0.7820   | 0.8221  |
+|  Temps calcul        | 4.3350 sec    | 4.4093 sec | 0.1570 sec |
+|  Matrice confusion   | [[16954 2668] [3350 10291]] | [[16349 3273] [3978 9663]] | [[16685 2937] [2981 10660]] |
+
+
+#### Analyse Comparative des Modèles
+
+ 1. **Performance Prédictive**
+- **Meilleur score test** : XGBoost (82.21%) → Random Forest (81.91%) → Adaboost (78.20%)
+- **Écart train/test** : Random Forest (11.81% d'écart) montre un surapprentissage significatif
+- **Stabilité** : Adaboost a le plus faible écart (0.84%) mais score absolu plus bas
+
+ 2. **Temps de Calcul**
+- **Plus rapide à l'entraînement** : XGBoost (0.36s) → Adaboost (18.51s) → Random Forest (33.96s)
+- **Plus rapide en test** : XGBoost (0.16s) → Random Forest (4.34s) → Adaboost (4.41s)
+- **XGBoost** est 94 fois plus rapide que Random Forest à l'entraînement
+
+ 3. **Analyse des Matrices de Confusion**
+- **Random Forest** : Bon nombres mais significativement plus de FN (3350) que de FP (2668)
+- **XGBoost** : Bon équilibre avec 2937 FP et 2981 FN (similaires)
+- **Adaboost** : Plus d'erreurs (3273 FP, 3978 FN) → performance globale plus faible
+
+ 4. **Compromis Performance/Complexité**
+- **XGBoost** : Meilleur compromis (performance élevée + rapidité)
+- **Random Forest** : Performance d'entraînement excellente mais généralisation moins bonne
+- **Adaboost** : Plus stable mais performance limitée
+
+
+**XGBoost** est le modèle recommandé pour ce problème :
+- Meilleure précision en test (82.21%)
+- Temps de calcul nettement inférieur
+- Bon équilibre entre performance et généralisation
+- Faible écart entre entraînement et test
+
+
 
 ### 2.4 Inférence sur un autre jeu de données _(Expérimentation 4)_
 
