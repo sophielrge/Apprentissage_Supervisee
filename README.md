@@ -65,6 +65,263 @@ Tableau 3 – Expérimentation (1) : Résultats obtenus en test
 
 ### 2.2 Optimisation des hyperparamètres des modèles _(Expérimentation 2)_
 
+Même jeu de données que pour la partie précédente
+### Random Forest - Optimisation des Hyperparamètres
+
+**Résultats d'Optimisation**
+
+**base param**
+
+ max_features='sqrt',
+ max_depth = 10 ,
+ min_samples_split=6,
+ min_samples_leaf= 2 ,
+ n_estimators=100,
+ random_state=42
+
+On prend ces paramètres de base et on les fait varier 1 à 1 séparemment pour observer l'évolution de l'accuracy. 
+
+**n_estimators** (Nombre d'arbres)
+| n_estimators |  CV Accuracy|
+|--------------|-------------|
+| 50           | 0.8109      |
+| 75           | 0.8127      |
+| 100          | 0.8129      |
+| 150          | 0.8134      |
+| 200          | 0.8138      |
+
+**Meilleure valeur:** `n_estimators = 200` ( CV Accuracy = 0.8138)
+
+---
+
+**max_depth** (Profondeur maximale)
+| max_depth |  CV Accuracy |
+|-----------|-------------|
+| None      | 0.8138      |
+| 5         | 0.6923      |
+| 10        | 0.7802      |
+| 15        | 0.7956      |
+| 20        | 0.8029      |
+
+**Meilleure valeur:** `max_depth = None` (CV Accuracy = 0.8138)
+
+---
+
+**min_samples_split** (Échantillons minimum pour diviser)
+| min_samples_split | CV Accuracy |
+|-------------------|-------------|
+| 2                 | 0.8138      |
+| 4                 | 0.8168      |
+| 6                 | 0.8183      |
+| 8                 | 0.8187      |
+| 10                | 0.8193      |
+
+**Meilleure valeur:** `min_samples_split = 10` ( CV Accuracy = 0.8193)
+
+---
+
+**min_samples_leaf** (Échantillons minimum par feuille)
+| min_samples_leaf |  CV Accuracy |
+|------------------|-------------|
+| 1                | 0.8193      |
+| 2                | 0.8174      |
+| 3                | 0.8148      |
+| 4                | 0.8141      |
+| 5                | 0.8121      |
+
+**Meilleure valeur:** `min_samples_leaf = 1` ( CV Accuracy= 0.8193)
+
+**max_features** (Nombre maximum de caractéristiques)
+| max_features |  CV Accuracy|
+|--------------|-------------|
+| sqrt         | 0.8193      |
+| log2         | 0.8224      |
+
+**Meilleure valeur:** `max_features = 'log2'` ( CV Accuracy = 0.8224)
+
+**Paramètres Finaux Optimaux**
+| Paramètre          | Meilleure Valeur |
+|--------------------|------------------|
+| n_estimators       | 200              |
+| max_depth          | None             |
+| min_samples_split  | 10               |
+| min_samples_leaf   | 1                |
+| max_features       | log2             |
+
+#### **Résultats en Entraînement**
+
+| Métrique | Valeur |
+|----------|--------|
+| **Accuracy** | 0.9372 |
+| **Temps de calcul** | 33.9610 sec |
+
+**Matrice de confusion :**
+<pre>
+[[74934 3556]
+[ 4799 49763]]
+</pre>
+####  **Résultats en Test**
+
+| Métrique | Valeur |
+|----------|--------|
+| **Accuracy** | 0.8191 |
+| **Temps de calcul** | 4.3350 sec |
+
+**Matrice de confusion :**
+
+<pre>
+[[16954  2668]
+ [ 3350 10291]]
+
+</pre>
+
+
+
+
+---
+
+#### Résumé
+Le modèle Random Forest a été optimisé grâce à une recherche systématique sur cinq hyperparamètres clés. La meilleure configuration a obtenu une précision de validation croisée de **82.24%**. On note particulièrement que :
+- `max_features = 'log2'` a apporté une amélioration supplémentaire significative
+- `min_samples_split = 10` a fourni une amélioration notable de la précision
+- `max_depth = None` (profondeur illimitée) a donné les meilleurs résultats
+- L'augmentation de `n_estimators` jusqu'à 200 a produit des améliorations graduelles
+
+**Performance finale :**
+- **Score entraînement** : 93.72%
+- **Score test** : 81.91%
+- La différence entre entraînement et test suggère un léger surapprentissage
+
+---
+
+### AdaBoost - Optimisation des Hyperparamètres
+
+**Résultats d'Optimisation**
+
+**n_estimators** (Nombre d'estimateurs)
+| n_estimators | CV Accuracy |
+|--------------|-------------|
+| 50           | 0.7764      |
+| 75           | 0.7802      |
+| 100          | 0.7838      |
+| 150          | 0.7859      |
+| 200          | 0.7875      |
+
+**Meilleure valeur:** `n_estimators = 200` (CV Accuracy = 0.7875)
+
+---
+
+**learning_rate** (Taux d'apprentissage)
+| learning_rate | CV Accuracy |
+|---------------|-------------|
+| 0.01          | 0.6784      |
+| 0.05          | 0.7452      |
+| 0.1           | 0.7667      |
+| 0.5           | 0.7831      |
+| 1.0           | 0.7875      |
+
+**Meilleure valeur:** `learning_rate = 1.0` (CV Accuracy = 0.7875)
+
+**Paramètres Finaux Optimaux**
+| Paramètre      | Meilleure Valeur |
+|----------------|------------------|
+| n_estimators   | 200              |
+| learning_rate  | 1.0              |
+
+**Meilleurs paramètres finaux :**
+{
+'n_estimators': 200,
+'learning_rate': 1.0
+}
+
+
+#### **Résultats en Entraînement**
+
+| Métrique | Valeur |
+|----------|--------|
+| **Accuracy** | 0.7904 |
+| **Temps de calcul** | 18.5088 sec |
+
+**Matrice de confusion :**
+<seq>
+[[65888 12652]
+[15237 39325]]
+</seq>
+
+#### **Résultats en Test**
+
+| Métrique | Valeur |
+|----------|--------|
+| **Accuracy** | 0.7820 |
+| **Temps de calcul** | 4.4093 sec |
+
+**Matrice de confusion :**
+<seq>
+[[16349 3273]
+[3978 9663]]
+</seq>
+
+Le modèle AdaBoost a été optimisé sur deux hyperparamètres principaux. La meilleure configuration a obtenu une précision de validation croisée de **78.75%**. Les constatations sont :
+- `learning_rate = 1.0` a donné les meilleurs résultats
+- `n_estimators = 200` a fourni le nombre optimal d'estimateurs
+- L'algorithme montre des performances plus modestes mais stables
+
+**Performance finale :**
+- **Score entraînement** : 79.04%
+- **Score test** : 78.20%
+- Très faible écart entre entraînement et test, indiquant une bonne généralisation
+
+### XGBoost - Optimisation des Hyperparamètres
+Même principe pour XGBoost ou on a fait varier 1 à 1 chaque paramètre individuellement, on obtient :
+
+**Paramètres Finaux Optimaux**
+| Paramètre          | Meilleure Valeur |
+|--------------------|------------------|
+| n_estimators       | 300              |
+| learning_rate      | 0.2              |
+| max_depth          | 7                |
+| subsample          | 0.8              |
+| colsample_bytree   | 0.8              |
+
+#### **Résultats en Entraînement**
+
+| Métrique | Valeur |
+|----------|--------|
+| **Accuracy** | 0.8455 |
+| **Temps de calcul** | 0.3632 sec |
+
+**Matrice de confusion :**
+<seq>
+[[68188 10302]
+[10259 44303]]
+</seq>
+
+#### **Résultats en Test**
+
+| Métrique | Valeur |
+|----------|--------|
+| **Accuracy** | 0.8221 |
+| **Temps de calcul** | 0.1570 sec |
+
+**Matrice de confusion :**
+<seq>
+[[16685 2937]
+[2981 10660]]
+</seq>
+
+Le modèle XGBoost a été optimisé sur cinq hyperparamètres principaux. La meilleure configuration a obtenu une précision de validation croisée de **82.63%**. Les observations principales sont :
+- `colsample_bytree = 0.8` et `subsample = 0.8` ont fourni les meilleurs résultats d'échantillonnage
+- `max_depth = 7` a offert une profondeur optimale pour la complexité du modèle
+- `learning_rate = 0.2` s'est révélé efficace pour la vitesse de convergence
+- `n_estimators = 300` a donné le meilleur nombre d'arbres
+
+**Performance finale :**
+- **Score entraînement** : 84.55%
+- **Score test** : 82.21%
+- Faible écart entre entraînement et test (2.34%), indiquant une bonne capacité de généralisation
+- Temps de calcul très rapide à la fois pour l'entraînement (0.36s) et la prédiction (0.16s)
+
+
 
 ### 2.3 Analyse comparative des modèles _(Expérimentation 3)_
 
