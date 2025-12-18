@@ -115,7 +115,7 @@ Tableau X – Expérimentation (5) : Impact de la taille du jeu d'entraînement
 
 ## 3. Explicabilité des prédictions
 
-### 3.1 Importance globale des attributs
+### 3.1 Classement des attributs
 
 L’objectif de cette partie est d’identifier quels attributs ont le plus d’influence sur les prédictions du modèle.
 Nous utilisons le modèle XGBoost, qui c'est révélé comme le plus performant dans la partie 2.
