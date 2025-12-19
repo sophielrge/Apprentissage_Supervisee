@@ -498,9 +498,10 @@ and Puerto Rico Community Survey 2018) est négatif(0.309) donc cela diminue la 
  Enfin la ligne OCCP_3725.0 <= 0.00: 0.104 explique qu'il est positif que la personne n'ait pas comme travail "First-line supervisors of security workers"
 
 
-#### Avantages et Limites
+### Avantages et Limites
 
  **Intérêts :**
+ 
 
 **Interprétabilité locale** - Permet de comprendre pourquoi une prédiction spécifique a été faite
 
@@ -509,7 +510,10 @@ and Puerto Rico Community Survey 2018) est négatif(0.309) donc cela diminue la 
 **Détection de biais** - Permet de voir si le modèle utilise des features pertinentes
 
 
+
+
  **Limites :**
+
 
 **Instable** - Les résultats peuvent changer entre différentes exécutions
 
@@ -518,6 +522,8 @@ and Puerto Rico Community Survey 2018) est négatif(0.309) donc cela diminue la 
 **Coûteux en calcul** - Lent sur de grands jeux de données
 
 **Interprétabilité** - Peux être très dur à comprendre et flou. Il est par exemple difficile de comprendre pourquoi ne pas venir spécifiquement de Zambie a un tel impact négatif sur la prédiction.
+
+
 
 ### SHAP
 On va maintenant voir 2 exemples de SHAP pour mieux comprendre son fonctionnement.
